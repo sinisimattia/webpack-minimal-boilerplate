@@ -1,4 +1,5 @@
 module.exports = {
+  mode: process.env.NODE_ENV || 'development',
   context: __dirname + "/app",
   entry: "./main.js",
   output: {
@@ -7,13 +8,12 @@ module.exports = {
     publicPath: '/build'
   },
   resolve: {
-    extensions: ['', '.js', '.jsx']
+    extensions: ['.js', '.jsx']
   },
   devtool: 'eval-source-map',
   module: {
-    loaders: [
-      { test: /\.jsx?$/, exclude: /node_modules/, loader: "babel-loader" },
-      { test: /\.jsx?$/, exclude: /node_modules/, loader: "eslint-loader", enforce: "pre" }
+    rules: [
+      { test: /\.jsx?$/, exclude: /node_modules/, use: "babel-loader" },
     ]
   }
 };
